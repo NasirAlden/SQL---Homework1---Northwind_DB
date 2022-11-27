@@ -1,0 +1,153 @@
+סרטון חלק ראשון
+
+
+/*select * from TMP
+
+select * from TMP where shem like 'B%'
+select * from TMP where shem like '%E%'
+
+select * from TMP where shem like '_I'
+select * from TMP where shem like '_I%'
+
+select * from TMP where shem like '_B_%E_%H%'
+
+select * from TMP where shem not like '_I'
+*/
+
+
+סרטון חלק שני
+--select * from Employees 
+
+--select * from Employees where FirstName like 'N%'
+
+--select * from Employees where (FirstName like '%A%' OR FirstName like '%B%') and FirstName like '%C%'
+
+--select * from Employees where (lower(FirstName) like '%A%' OR lower(FirstName) like '%B%') and FirstName like '%C%'
+
+--select * from Employees where Region is null 
+
+--select * from Employees where Region is not null 
+
+--select * from Employees where Region is null and FirstName like '%n%'
+
+/*select * from [Order Details] Tbl1
+inner join Orders Tbl2 on Tbl1.OrderID = Tbl2.OrderID
+inner join Customers Tbl3 on Tbl3.CustomerID = Tbl2.CustomerID*/
+
+/*select * from [Employees] Tbl1
+inner join EmployeeTerritories Tbl2 on Tbl1.EmployeeID = Tbl2.EmployeeID
+inner join Territories Tbl3 on Tbl3.TerritoryID = Tbl2.TerritoryID*/
+
+/*select * from [Orders] Tbl1
+inner join Shippers Tbl2 on Tbl1.ShipVia = Tbl2.ShipperID where ShipperID = 2*/
+
+תרגיל בטימס
+/*select Tbl1.CategoryID, CategoryName, ProductID from [Categories] Tbl1
+inner join Products Tbl2 on Tbl1.CategoryID = Tbl2.CategoryID */
+
+/*select Tbl1.CategoryID, CategoryName, ProductID from [Categories] Tbl1
+inner join Products Tbl2 on Tbl1.CategoryID = Tbl2.CategoryID where ProductID>100*/
+
+/*select * from [Products] Tbl1
+inner join Suppliers Tbl2 on Tbl1.SupplierID = Tbl2.SupplierID where Country='USA'*/
+
+/*select * from [Products] Tbl1
+inner join Suppliers Tbl2 on Tbl1.SupplierID = Tbl2.SupplierID where Country!='Germany'*/
+
+/*select CompanyName from [Products] Tbl1
+inner join Suppliers Tbl2 on Tbl1.SupplierID = Tbl2.SupplierID where HomePage is not null*/
+
+/*select ProductName from [Products] Tbl1
+inner join Suppliers Tbl2 on Tbl1.SupplierID = Tbl2.SupplierID where HomePage is not null*/
+
+/*select orderDate from [Orders]
+where OrderID=10408 */
+
+/*select ProductName from [Orders] Tbl1 
+inner join [Order Details] Tbl2 on tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID where tbl1.OrderID=10408*/
+
+/*select CompanyName from [Orders] Tbl1 
+inner join [Order Details] Tbl2 on tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID 
+inner join [Suppliers] Tbl4 on Tbl3.SupplierID = Tbl4.SupplierID
+where tbl1.OrderID=10408*/
+
+סרטון 5 תרגילי סרטון ותרגילי טימס
+/*create table zolPo (productName nvarchar(30), price float default 0)
+
+insert into zolPo(productName,price) select ProductName,UnitPrice from Products where UnitPrice<5
+
+select * from zolPo
+
+drop table zolPo*/
+
+
+/*select ProductName,UnitPrice into zolPo from Products where UnitPrice<10
+
+select * from zolPo
+
+drop table zolPo*/
+
+/*select count(ProductName) as proName into zolPo from Products
+
+alter table zolPo add price int null
+
+select * from zolPo
+
+alter table zolPo drop column price 
+
+select * from zolPo
+
+drop table zolPo*/
+
+/*select Tbl3.ProductID,Tbl3.ProductName into newTable from [Orders] Tbl1
+inner join [Order Details]Tbl2 on Tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID
+where Tbl1.ShipVia = 1
+
+select * from newTable
+
+drop table newTable*/
+
+/*select Tbl3.ProductID,Tbl3.ProductName into newTable from [Orders] Tbl1
+inner join [Order Details]Tbl2 on Tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID
+where Tbl1.ShipVia = 1
+
+select top 5* from newTable
+
+drop table newTable*/
+
+/*select Tbl1.*,Tbl3.ProductName into order2 from [Orders] Tbl1
+inner join [Order Details]Tbl2 on Tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID
+where Tbl1.ShipVia = 2
+
+select ProductName from order2
+
+delete from order2 where ShipCountry like '%E%'
+
+select distinct ProductName from order2
+
+drop table order2*/
+
+/*select CustomerID,Tbl1.OrderID,Tbl4.CompanyName into orderA from [Orders] Tbl1
+inner join [Order Details]Tbl2 on Tbl1.OrderID = Tbl2.OrderID
+inner join [Products] Tbl3 on Tbl2.ProductID = Tbl3.ProductID
+inner join [Suppliers] Tbl4 on Tbl3.SupplierID=Tbl4.SupplierID
+where CustomerID like '%A%' 
+
+select distinct CompanyName from orderA
+
+drop table orderA*/
+
+select ContactName,ProductName into newTable from [Products] Tbl1
+inner join [Order Details]Tbl2 on Tbl1.ProductID = Tbl2.ProductID
+inner join [Orders]Tbl3 on Tbl2.OrderID = Tbl3.OrderID
+inner join [Customers]Tbl4 on Tbl3.CustomerID = Tbl4.CustomerID
+where ProductName like 'L%'
+
+select * from newTable
+
+drop table newTable
